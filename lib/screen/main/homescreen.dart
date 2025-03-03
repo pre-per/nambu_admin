@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/noticecard.dart';
 import 'package:nambu_admin/main.dart';
+import 'package:nambu_admin/screen/sub/bathscreen.dart';
+import 'package:nambu_admin/screen/sub/deliveryscreen.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -24,15 +26,15 @@ class Homescreen extends StatelessWidget {
                   children: [
                     Noticecard(
                       backgroundColor: Color(0xffffc2bd),
-                      text: '공지사항을 확인하세요',
+                      title: '공지사항을 확인하세요',
                       iconData: Icons.emergency,
                     ),
                     const SizedBox(height: 10.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        HomescreenBathContainer(w_mdof),
-                        HomescreenDeliveryContainer(w_mdof),
+                        HomescreenBathInkWell(w_mdof, context),
+                        HomescreenDeliveryInkWell(w_mdof, context),
                       ],
                     ),
                   ],
@@ -73,54 +75,44 @@ Container HomescreenGallery(double w_mdof) {
   );
 }
 
-Container HomescreenNoticeContainer(double w_mdof) {
-  return Container(
-    width: w_mdof,
-    height: 60.0,
-    decoration: BoxDecoration(
-      color: Color(0xffffc2bd),
-      borderRadius: BorderRadius.circular(10.0),
-      border: Border.all(color: Color(0xfff7a199), width: 0.1),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          '  🚨 공지: ####### 🚨',
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
-        ),
-        IconButton(onPressed: () {}, icon: Icon(Icons.close)),
-      ],
-    ),
-  );
-}
-
-Container HomescreenBathContainer(double w_mdof) {
-  return Container(
-    width: w_mdof * 0.45,
-    height: w_mdof * 0.45,
-    decoration: BoxDecoration(
-      color: Colors.orange[400],
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-    child: Center(
-      child: Text('목욕탕',
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+InkWell HomescreenBathInkWell(double w_mdof, BuildContext context) {
+  return InkWell(
+    onTap: () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => Bathscreen()));
+    },
+    child: Ink(
+      width: w_mdof * 0.45,
+      height: w_mdof * 0.45,
+      decoration: BoxDecoration(
+        color: Colors.orange[400],
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Center(
+        child: Text('목욕탕',
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+      ),
     ),
   );
 }
 
-Container HomescreenDeliveryContainer(double w_mdof) {
-  return Container(
-    width: w_mdof * 0.45,
-    height: w_mdof * 0.45,
-    decoration: BoxDecoration(
-      color: Colors.blue[400],
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-    child: Center(
-      child: Text('도시락 배달',
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+InkWell HomescreenDeliveryInkWell(double w_mdof, BuildContext context) {
+  return InkWell(
+    onTap: () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => Deliveryscreen()));
+    },
+    child: Ink(
+      width: w_mdof * 0.45,
+      height: w_mdof * 0.45,
+      decoration: BoxDecoration(
+        color: Colors.blue[400],
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Center(
+        child: Text('도시락 배달',
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+      ),
     ),
   );
 }
