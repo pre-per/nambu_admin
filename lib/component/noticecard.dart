@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/screen/sub/noticedetails.dart';
 
 class Noticecard extends StatefulWidget {
   IconData? iconData;
-  String text;
+  String title;
   Color backgroundColor;
 
   Noticecard({
     this.iconData,
-    this.text = 'Empty Title',
+    this.title = 'Empty Title',
     this.backgroundColor = Colors.white,
     super.key,
   });
@@ -50,7 +51,9 @@ class _NoticecardState extends State<Noticecard> {
           child: Material(
             child: InkWell(
               onTap: () {
-                print("카드 클릭됨");
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => Noticedetails(title: widget.title))
+                );
               },
               onTapDown: _onTapDown,
               onTapUp: _onTapUp,
@@ -85,7 +88,7 @@ class _NoticecardState extends State<Noticecard> {
                       ),
                       const SizedBox(width: 20.0),
                       Text(
-                        widget.text,
+                        widget.title,
                         style: TextStyle(
                             fontSize: 17.0, fontWeight: FontWeight.w600),
                       ),

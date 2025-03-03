@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/provider/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:nambu_admin/screen/main/calendarscreen.dart';
 import 'package:nambu_admin/screen/main/homescreen.dart';
 import 'package:nambu_admin/screen/main/noticescreen.dart';
 import 'package:nambu_admin/screen/main/profilescreen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('ko_KR', null);
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Navigationbarprovider()),
+        ChangeNotifierProvider(create: (_) => Calendarprovider()),
       ],
       child: MyApp(),
     ),
@@ -53,13 +58,17 @@ class Mainscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<Navigationbarprovider>(context);
     return Scaffold(
-      body: _screens[provider.selectedIndex],
+      body: PageView(
+        controller: provider.pageController,
+        onPageChanged: provider.onPageChanged,
+        children: _screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: provider.updateIndex,
         currentIndex: provider.selectedIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: '캘린더'),
           BottomNavigationBarItem(icon: Icon(Icons.campaign), label: '공지'),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/component/calendarplancard.dart';
+import 'package:nambu_admin/component/calendarwidget.dart';
 import 'package:nambu_admin/screen/sub/calendaraddplan.dart';
 
 class Calendarscreen extends StatelessWidget {
@@ -14,7 +16,13 @@ class Calendarscreen extends StatelessWidget {
         children: [
           Column(
             children: [
-              CalendarscreenCalendar(w_mdof),
+              CalendarWidget(),
+              const SizedBox(height: 12.0),
+              Calendarplancard(),
+              Calendarplancard(),
+              Calendarplancard(),
+              Calendarplancard(),
+              Calendarplancard(),
             ],
           ),
         ],
@@ -59,14 +67,6 @@ AppBar CalendarscreenAppBar(BuildContext context) {
       ],
     ),
     centerTitle: false,
-  );
-}
-
-Container CalendarscreenCalendar(double w_mdof) {
-  return Container(
-    width: w_mdof,
-    height: 400.0,
-    color: Colors.green[300],
   );
 }
 
