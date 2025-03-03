@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/component/noticecard.dart';
 import 'package:nambu_admin/main.dart';
 
 class Homescreen extends StatelessWidget {
@@ -17,19 +18,25 @@ class Homescreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HomescreenGallery(w_mdof),
-              const SizedBox(height: 10.0),
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 15.0, right: 15.0, top: 7.0, bottom: 7.0),
-                child: HomescreenNoticeContainer(w_mdof),
-              ),
-              const SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  HomescreenBathContainer(w_mdof),
-                  HomescreenDeliveryContainer(w_mdof),
-                ],
+                padding: EdgeInsets.symmetric(horizontal: 7.0),
+                child: Column(
+                  children: [
+                    Noticecard(
+                      backgroundColor: Color(0xffffc2bd),
+                      text: '공지사항을 확인하세요',
+                      iconData: Icons.emergency,
+                    ),
+                    const SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        HomescreenBathContainer(w_mdof),
+                        HomescreenDeliveryContainer(w_mdof),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

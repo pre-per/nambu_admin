@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
 import 'package:provider/provider.dart';
-import 'package:nambu_admin/screen/calendarscreen.dart';
-import 'package:nambu_admin/screen/homescreen.dart';
-import 'package:nambu_admin/screen/noticescreen.dart';
-import 'package:nambu_admin/screen/profilescreen.dart';
+import 'package:nambu_admin/screen/main/calendarscreen.dart';
+import 'package:nambu_admin/screen/main/homescreen.dart';
+import 'package:nambu_admin/screen/main/noticescreen.dart';
+import 'package:nambu_admin/screen/main/profilescreen.dart';
 
 void main() {
   runApp(
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Colors.grey,
           selectedItemColor: Colors.black,
         ),
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.grey[200],
       ),
       home: Mainscreen(),
     );

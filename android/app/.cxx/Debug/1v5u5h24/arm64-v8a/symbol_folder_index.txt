@@ -1,0 +1,1 @@
+C:\dev\flutter_project\nambu_admin\build\app\intermediates\cxx\Debug\1v5u5h24\obj\arm64-v8a
