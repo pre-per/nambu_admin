@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nambu_admin/provider/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
+import 'package:nambu_admin/provider/noticewritingprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:nambu_admin/screen/main/calendarscreen.dart';
@@ -16,6 +18,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => Navigationbarprovider()),
         ChangeNotifierProvider(create: (_) => Calendarprovider()),
+        ChangeNotifierProvider(create: (_) => NoticeProvider()),
       ],
       child: MyApp(),
     ),
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.black,
         ),
         scaffoldBackgroundColor: Colors.grey[200],
+        textTheme: GoogleFonts.notoSansKrTextTheme(),
       ),
       home: Mainscreen(),
     );

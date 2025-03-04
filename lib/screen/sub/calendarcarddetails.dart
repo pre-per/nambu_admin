@@ -5,6 +5,14 @@ class Calendarcarddetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: CalendarcarddetailsAppBar(),
+    );
   }
+}
+
+AppBar CalendarcarddetailsAppBar() {
+  return AppBar(
+    backgroundColor: Colors.white,
+  );
 }
