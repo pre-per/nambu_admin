@@ -10,11 +10,12 @@ class Navigationbarprovider with ChangeNotifier {
 
   void updateIndex(int index) {
     _selectedIndex = index;
-    _pageController.animateToPage(
+    _pageController.jumpToPage(index);
+    /* _pageController.animateToPage(
       index,
-      duration: Duration(milliseconds: 100),
+      duration: Duration(milliseconds: 1),
       curve: Curves.easeInOut,
-    );
+    ); */
     notifyListeners();
   }
 

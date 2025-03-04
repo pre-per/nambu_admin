@@ -8,6 +8,7 @@ class CalendarAddplan extends StatelessWidget {
     final double w_mdof = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      appBar: CalendarAddplanAppBar(),
       body: ListView(
         children: [
           Column(
@@ -22,47 +23,41 @@ class CalendarAddplan extends StatelessWidget {
   }
 }
 
+AppBar CalendarAddplanAppBar() {
+  return AppBar(
+    backgroundColor: Colors.white,
+    title: Text(
+      '일정 추가하기',
+      style: TextStyle(
+        fontSize: 17.0,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  );
+}
+
 BottomAppBar CalendarAddplanBottomAppBar(double w_mdof, BuildContext context) {
   return BottomAppBar(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: Container(
-            width: w_mdof * 0.3,
-            color: Colors.transparent,
-            child: Center(
-              child: Text('취소',
-                  style: TextStyle(
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.w600,
-                  )),
-            ),
-          ),
+    color: Colors.white,
+    child: GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Container(
+        width: w_mdof * 0.6,
+        decoration: BoxDecoration(
+          color: Color(0xfffc7168),
+          borderRadius: BorderRadius.circular(10.0),
         ),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: Container(
-            width: w_mdof * 0.6,
-            decoration: BoxDecoration(
-              color: Color(0xffffc2bd),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Center(
-              child: Text('일정 추가하기',
-                  style: TextStyle(
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.w600,
-                  )),
-            ),
-          ),
+        child: Center(
+          child: Text('작성 완료',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              )),
         ),
-      ],
+      ),
     ),
   );
 }

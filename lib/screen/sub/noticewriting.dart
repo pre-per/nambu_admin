@@ -1,64 +1,175 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:nambu_admin/const/colors.dart';
+import 'package:nambu_admin/provider/noticewritingprovider.dart';
+import 'package:provider/provider.dart';
 
 class Noticewriting extends StatelessWidget {
-  const Noticewriting({super.key});
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Noticewriting({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<NoticeProvider>(context);
     final double w_mdof = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      body: ListView(children: [
-        Column(
-          children: [],
-        )
-      ]),
-      bottomNavigationBar: NoticewritingBottomAppBar(w_mdof, context),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        provider.saveNotice();
+      },
+      child: Scaffold(
+        appBar: NoticewritingAppBar(),
+        backgroundColor: Colors.white,
+        body: ListView(children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('제목',
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        fontWeight: FontWeight.w600,
+                      )),
+                  const SizedBox(height: 10.0),
+                  TextFormField(
+                    controller: provider.titleController,
+                    decoration: InputDecoration(
+                      hintText: '제목',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: MAIN_RED_COLOR,
+                          width: 2.0,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                          width: 1.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40.0),
+                  Text('날짜 및 시간',
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        fontWeight: FontWeight.w600,
+                      )),
+                  const SizedBox(height: 20.0),
+                  SizedBox(
+                    height: 40.0,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            provider.pickDateTime(context);
+                          },
+                          icon: Icon(Icons.calendar_month),
+                        ),
+                        const SizedBox(width: 10.0),
+                        VerticalDivider(color: Colors.grey, width: 2.0),
+                        const SizedBox(width: 20.0),
+                        Text(
+                          DateFormat("yyyy-MM-dd   HH:mm")
+                              .format(provider.dateTime),
+                          style: TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 40.0),
+                  Text('자세한 설명',
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        fontWeight: FontWeight.w600,
+                      )),
+                  const SizedBox(height: 10.0),
+                  SizedBox(
+                    height: 200.0,
+                    child: TextFormField(
+                      controller: provider.descriptionController,
+                      expands: true,
+                      maxLines: null,
+                      textAlignVertical: TextAlignVertical.top,
+                      decoration: InputDecoration(
+                        hintText: '자세한 설명',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: MAIN_RED_COLOR,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                            width: 1.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ]),
+        bottomNavigationBar: NoticewritingBottomAppBar(w_mdof, context),
+      ),
     );
   }
 }
 
+AppBar NoticewritingAppBar() {
+  return AppBar(
+    backgroundColor: Colors.white,
+    title: Text(
+      '공지 작성하기',
+      style: TextStyle(
+        fontSize: 17.0,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  );
+}
+
 BottomAppBar NoticewritingBottomAppBar(double w_mdof, BuildContext context) {
   return BottomAppBar(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: Container(
-            width: w_mdof * 0.3,
-            color: Colors.transparent,
-            child: Center(
-              child: Text('취소',
-                  style: TextStyle(
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.w600,
-                  )),
-            ),
-          ),
+    color: Colors.white,
+    child: GestureDetector(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Container(
+        width: w_mdof,
+        decoration: BoxDecoration(
+          color: MAIN_RED_COLOR,
+          borderRadius: BorderRadius.circular(7.0),
         ),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: Container(
-            width: w_mdof * 0.6,
-            decoration: BoxDecoration(
-              color: Color(0xffffc2bd),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Center(
-              child: Text('공지 작성하기',
-                  style: TextStyle(
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.w600,
-                  )),
-            ),
-          ),
+        child: Center(
+          child: Text('작성 완료',
+              style: TextStyle(
+                fontSize: 18.0,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              )),
         ),
-      ],
+      ),
     ),
   );
 }
