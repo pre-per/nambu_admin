@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/component/categoryselectmodal.dart';
 
 class CalendarAddplan extends StatelessWidget {
   const CalendarAddplan({super.key});
@@ -11,10 +12,20 @@ class CalendarAddplan extends StatelessWidget {
       appBar: CalendarAddplanAppBar(),
       body: ListView(
         children: [
-          Column(
-            children: [
-
-            ],
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    showCategoryselectModal(context);
+                  },
+                  child: SizedBox(
+                    child: Text('click'),
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),

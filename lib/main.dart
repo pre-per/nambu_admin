@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nambu_admin/provider/calendaraddplanprovider.dart';
 import 'package:nambu_admin/provider/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
 import 'package:nambu_admin/provider/noticewritingprovider.dart';
@@ -19,6 +20,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => Navigationbarprovider()),
         ChangeNotifierProvider(create: (_) => Calendarprovider()),
         ChangeNotifierProvider(create: (_) => NoticeProvider()),
+        ChangeNotifierProvider(create: (_) => Calendaraddplanprovider()),
       ],
       child: MyApp(),
     ),
