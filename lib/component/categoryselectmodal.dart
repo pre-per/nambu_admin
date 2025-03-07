@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/provider/calendaraddplanprovider.dart';
-import 'package:provider/provider.dart';
 
-Future<dynamic> showCategoryselectModal(BuildContext context) {
-  final provider = Provider.of<Calendaraddplanprovider>(context, listen: false);
-
-  return showModalBottomSheet(
+Future<int?> showCategoryselectModal(
+  List<IconData> categoryIconData,
+  List<String> categoryText,
+  int itemCount,
+  BuildContext context,
+) async {
+  return await showModalBottomSheet<int>(
     context: context,
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16.0))),
@@ -28,16 +29,20 @@ Future<dynamic> showCategoryselectModal(BuildContext context) {
               ),
             ),
             const SizedBox(height: 10),
-            const Text('카테고리 선택', style: TextStyle(fontSize: 17.0)),
+            const Text('카테고리 선택',
+                style: TextStyle(
+                  fontSize: 17.0,
+                  fontWeight: FontWeight.w600,
+                )),
             ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: provider.category.length,
+              itemCount: itemCount,
               itemBuilder: (BuildContext context, int index) {
                 return Material(
                   child: InkWell(
                     onTap: () {
-                      provider.selectedCategory;
+                      Navigator.of(context).pop(index);
                     },
                     child: Ink(
                       width: MediaQuery.of(context).size.width * 0.8,
@@ -47,10 +52,10 @@ Future<dynamic> showCategoryselectModal(BuildContext context) {
                         padding: const EdgeInsets.all(15.0),
                         child: Row(
                           children: [
-                            Icon(provider.category[index].iconData),
+                            Icon(categoryIconData[index]),
                             const SizedBox(width: 20.0),
                             Text(
-                              provider.category[index].title,
+                              categoryText[index],
                               style: TextStyle(
                                 fontSize: 17.0,
                                 fontWeight: FontWeight.w600,

@@ -59,36 +59,13 @@ class Noticewriting extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 40.0),
-                  Text('날짜 및 시간',
+                  Text('카테고리',
                       style: TextStyle(
                         fontSize: 17.0,
                         fontWeight: FontWeight.w600,
                       )),
                   const SizedBox(height: 20.0),
-                  SizedBox(
-                    height: 40.0,
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            provider.pickDateTime(context);
-                          },
-                          icon: Icon(Icons.calendar_month),
-                        ),
-                        const SizedBox(width: 10.0),
-                        VerticalDivider(color: Colors.grey, width: 2.0),
-                        const SizedBox(width: 20.0),
-                        Text(
-                          DateFormat("yyyy-MM-dd   HH:mm")
-                              .format(provider.dateTime),
-                          style: TextStyle(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  
                   const SizedBox(height: 40.0),
                   Text('자세한 설명',
                       style: TextStyle(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/categoryselectmodal.dart';
+import 'package:provider/provider.dart';
+import 'package:nambu_admin/provider/calendaraddplanprovider.dart';
 
 class CalendarAddplan extends StatelessWidget {
   const CalendarAddplan({super.key});
@@ -7,6 +9,8 @@ class CalendarAddplan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double w_mdof = MediaQuery.of(context).size.width;
+    final provider =
+        Provider.of<Calendaraddplanprovider>(context, listen: false);
 
     return Scaffold(
       appBar: CalendarAddplanAppBar(),
@@ -17,8 +21,18 @@ class CalendarAddplan extends StatelessWidget {
             child: Column(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    showCategoryselectModal(context);
+                  onTap: () async {
+                    int? selectedIndex = await showCategoryselectModal(
+                      provider.category.map((e) => e.iconData).toList(),
+                      provider.category.map((e) => e.title).toList(),
+                      provider.category.length,
+                      context,
+                    );
+
+                    if (selectedIndex != null) {
+                      print("선택된 카테고리: ${selectedIndex}");
+                      provider.selectCategory(selectedIndex);
+                    }
                   },
                   child: SizedBox(
                     child: Text('click'),

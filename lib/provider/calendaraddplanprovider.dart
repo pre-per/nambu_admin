@@ -51,8 +51,8 @@ class Calendaraddplanprovider with ChangeNotifier {
     notifyListeners();
   }
 
-  void selectCategory(int id) {
-    _selectedCategory = _category.firstWhere((item) => item.id == id);
+  void selectCategory(int index) {
+    _selectedCategory = _category[index];
     print("SelectedCategory: ${_selectedCategory.title}");
     notifyListeners();
   }
