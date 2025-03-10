@@ -29,6 +29,7 @@ class Noticescreen extends StatelessWidget {
 
 AppBar NoticescreenAppBar(BuildContext context) {
   return AppBar(
+    scrolledUnderElevation: 0,
     backgroundColor: Colors.white,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

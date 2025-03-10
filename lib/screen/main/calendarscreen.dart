@@ -33,6 +33,7 @@ class Calendarscreen extends StatelessWidget {
 
 AppBar CalendarscreenAppBar(BuildContext context) {
   return AppBar(
+    scrolledUnderElevation: 0,
     backgroundColor: Colors.white,
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

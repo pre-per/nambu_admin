@@ -27,6 +27,7 @@ class Profilescreen extends StatelessWidget {
 
 AppBar ProfilescreenAppBar() {
   return AppBar(
+    scrolledUnderElevation: 0,
     centerTitle: false,
     title: Text(
       ' 👏🏻 안녕하세요, 남부종합사회복지관님',
