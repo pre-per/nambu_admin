@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/sportpersonalcard.dart';
+import 'package:nambu_admin/provider/sportpersonprovider.dart';
 import 'package:nambu_admin/screen/sub/teamview.dart';
+import 'package:provider/provider.dart';
 
 class Sportscreen extends StatelessWidget {
   const Sportscreen({super.key});
@@ -22,26 +24,44 @@ class Sportscreen extends StatelessWidget {
                 const SizedBox(height: 20.0),
                 SportscreenSearchBar(w_mdof),
                 const SizedBox(height: 30.0),
-                Text('청팀', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+                Text('청팀',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 20.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                SportscreenGetMore(context, w_mdof, Color(0xFFD4EAC7), '청팀'),
+                Consumer<SportpersonProvider>(
+                  builder: (context, provider, child) {
+                    provider.switchTeam(true);
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return Sportpersonalcard(index: index);
+                      },
+                    );
+                  },
+                ),
+                SportscreenGetMore(context, w_mdof, Color(0xFFD4EAC7), true),
                 const SizedBox(height: 8.0),
                 const SizedBox(height: 20.0),
-                Text('홍팀', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+                Text('홍팀',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
                 const SizedBox(height: 20.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFF4C2C2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFF4C2C2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFF4C2C2)),
-                const SizedBox(height: 8.0),
-                SportscreenGetMore(context, w_mdof, Color(0xFFD4EAC7), '홍팀'),
+                Consumer<SportpersonProvider>(
+                  builder: (context, provider, child) {
+                    provider.switchTeam(false);
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return Sportpersonalcard(index: index);
+                      },
+                    );
+                  },
+                ),
+                SportscreenGetMore(context, w_mdof, Color(0xFFD4EAC7), false),
                 const SizedBox(height: 8.0),
               ],
             ),
@@ -82,11 +102,14 @@ GestureDetector SportscreenSearchBar(double w_mdof) {
           children: [
             Icon(Icons.search, size: 25.0, color: Colors.grey[600]),
             const SizedBox(width: 15.0),
-            Text('검색어를 입력해주세요', style: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 17.0,
-              fontWeight: FontWeight.w600,
-            ),)
+            Text(
+              '검색어를 입력해주세요',
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 17.0,
+                fontWeight: FontWeight.w600,
+              ),
+            )
           ],
         ),
       ),
@@ -94,12 +117,12 @@ GestureDetector SportscreenSearchBar(double w_mdof) {
   );
 }
 
-GestureDetector SportscreenGetMore(BuildContext context, double w_mdof, Color color, String teamText) {
+GestureDetector SportscreenGetMore(
+    BuildContext context, double w_mdof, Color color, bool isBlueTeam) {
   return GestureDetector(
     onTap: () {
       Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => Teamview(teamText: teamText))
-      );
+          MaterialPageRoute(builder: (_) => Teamview(isBlueTeam: isBlueTeam)));
     },
     child: Container(
       width: w_mdof,
@@ -115,7 +138,7 @@ GestureDetector SportscreenGetMore(BuildContext context, double w_mdof, Color co
           children: [
             const SizedBox(width: 15.0),
             Expanded(
-                child: Text('${teamText} 전체보기',
+                child: Text('${isBlueTeam ? '청팀' : '홍팀'} 전체보기',
                     style: TextStyle(
                         fontSize: 16.0, fontWeight: FontWeight.w600))),
             Icon(Icons.navigate_next, size: 25.0, color: Colors.grey),

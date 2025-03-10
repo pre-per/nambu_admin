@@ -1,38 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/provider/sportpersonprovider.dart';
+import 'package:provider/provider.dart';
 
 class Sportpersonalcard extends StatelessWidget {
-  final double w_mdof;
-  final Color color;
+  final int index;
 
-  Sportpersonalcard({required this.w_mdof, required this.color, super.key});
+  Sportpersonalcard({required this.index, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Container(
-        width: w_mdof,
-        height: 70.0,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(width: 15.0),
-              Text('1',
-                  style:
-                      TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600)),
-              const SizedBox(width: 25.0),
-              Expanded(
-                  child: Text('contents',
-                      style: TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.w600))),
-              Icon(Icons.check, size: 25.0, color: Colors.grey),
-              const SizedBox(width: 10.0),
-            ],
+    final provider = Provider.of<SportpersonProvider>(context);
+    final person = provider.list[index];
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8.0),
+      child: GestureDetector(
+        onTap: () {},
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 70.0,
+          decoration: BoxDecoration(
+            color: provider.isBlueTeam ? Color(0xFFD0E8F2) : Color(0xFFF4C2C2),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(width: 15.0),
+                Text(person.num.toString(),
+                    style:
+                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600)),
+                const SizedBox(width: 25.0),
+                Expanded(
+                    child: Text(person.name,
+                        style: TextStyle(
+                            fontSize: 19.0, fontWeight: FontWeight.w600))),
+                Checkbox(
+                  value: person.isChecked,
+                  onChanged: (bool? value) {
+                    provider.toggleCheck(index);
+                  },
+                  activeColor: Colors.yellowAccent,
+                  checkColor: Colors.black,
+                ),
+                const SizedBox(width: 10.0),
+              ],
+            ),
           ),
         ),
       ),

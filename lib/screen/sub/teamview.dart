@@ -1,65 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/sportpersonalcard.dart';
+import 'package:nambu_admin/provider/sportpersonprovider.dart';
+import 'package:provider/provider.dart';
 
 class Teamview extends StatelessWidget {
-  final String teamText;
+  final bool isBlueTeam;
 
-  const Teamview({required this.teamText, super.key});
+  const Teamview({required this.isBlueTeam, super.key});
 
   @override
   Widget build(BuildContext context) {
-    final double w_mdof = MediaQuery.of(context).size.width;
+    final provider = Provider.of<SportpersonProvider>(context);
+    provider.switchTeam(isBlueTeam);
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: TeamviewAppBar(teamText),
+      appBar: AppBar(scrolledUnderElevation: 0),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              children: [
-                const SizedBox(height: 20.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                Sportpersonalcard(w_mdof: w_mdof, color: Color(0xFFD0E8F2)),
-                const SizedBox(height: 8.0),
-                const SizedBox(height: 20.0),
-              ],
-            )
+            const SizedBox(height: 20.0),
+            Text('  ${isBlueTeam ? '청팀' : '홍팀'}',
+                style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w600)),
+            const SizedBox(height: 10.0),
+            Text('  총 참석 인원: ${isBlueTeam ? provider.blueCheckedCount : provider.redCheckedCount}명',
+                style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w600, color: Colors.grey[600])),
+            const SizedBox(height: 20.0),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: provider.list.length,
+                  itemBuilder: (context, index) {
+                    return Sportpersonalcard(index: index);
+                  }),
+            ),
+            const SizedBox(height: 20.0),
           ],
         ),
       ),
     );
   }
-}
-
-AppBar TeamviewAppBar(String teamText) {
-  return AppBar(
-    title: Text(
-      teamText,
-      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
-    ),
-    scrolledUnderElevation: 0,
-  );
 }
