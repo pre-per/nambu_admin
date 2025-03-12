@@ -13,7 +13,7 @@ class Sportpersonalcard extends StatelessWidget {
     final person = provider.list[index];
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(top: 8.0),
       child: GestureDetector(
         onTap: () {},
         child: Container(

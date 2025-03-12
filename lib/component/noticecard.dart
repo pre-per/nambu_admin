@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/screen/sub/noticedetails.dart';
+import 'package:nambu_admin/screen/sub/notice/noticedetails.dart';
 
 class Noticecard extends StatefulWidget {
   IconData? iconData;

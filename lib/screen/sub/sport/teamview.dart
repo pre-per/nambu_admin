@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/component/sportpersonalcard.dart';
+import 'package:nambu_admin/component/sport/sportpersonalcard.dart';
 import 'package:nambu_admin/provider/sportpersonprovider.dart';
 import 'package:provider/provider.dart';
 

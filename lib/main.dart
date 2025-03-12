@@ -4,6 +4,7 @@ import 'package:nambu_admin/provider/calendaraddplanprovider.dart';
 import 'package:nambu_admin/provider/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
 import 'package:nambu_admin/provider/noticewritingprovider.dart';
+import 'package:nambu_admin/provider/randomnumprovider.dart';
 import 'package:nambu_admin/provider/sportpersonprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -23,6 +24,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => NoticeProvider()),
         ChangeNotifierProvider(create: (_) => Calendaraddplanprovider()),
         ChangeNotifierProvider(create: (_) => SportpersonProvider()),
+        ChangeNotifierProvider(create: (_) => RandomnumProvider()),
       ],
       child: MyApp(),
     ),
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Colors.grey,
           selectedItemColor: Colors.black,
         ),
-        scaffoldBackgroundColor: Colors.grey[200],
+        scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.notoSansKrTextTheme(),
       ),
       home: Mainscreen(),

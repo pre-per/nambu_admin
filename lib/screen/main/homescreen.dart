@@ -3,7 +3,7 @@ import 'package:nambu_admin/component/noticecard.dart';
 import 'package:nambu_admin/main.dart';
 import 'package:nambu_admin/screen/sub/bathscreen.dart';
 import 'package:nambu_admin/screen/sub/deliveryscreen.dart';
-import 'package:nambu_admin/screen/sub/sportscreen.dart';
+import 'package:nambu_admin/screen/sub/sport/sportscreen.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});

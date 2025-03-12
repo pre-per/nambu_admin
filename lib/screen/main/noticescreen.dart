@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/noticecard.dart';
-import 'package:nambu_admin/screen/sub/noticewriting.dart';
+import 'package:nambu_admin/screen/sub/notice/noticewriting.dart';
 
 class Noticescreen extends StatelessWidget {
   const Noticescreen({super.key});
