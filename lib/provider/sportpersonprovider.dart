@@ -3,7 +3,7 @@ import 'package:nambu_admin/model/sportpersonmodel.dart';
 
 class SportpersonProvider with ChangeNotifier {
   List<Sportpersonmodel> _teamList = [
-    Sportpersonmodel(name: 'blue청짱구', num: 1, adultNum: 5, childNum: 2, isChecked: false, isBlueTeam: true, phoneNum: '010-1234-5678'),
+    Sportpersonmodel(name: '짱구', num: 1, adultNum: 5, childNum: 2, isChecked: false, isBlueTeam: true, phoneNum: '010-1234-5678'),
     Sportpersonmodel(name: 'blue청철수', num: 2, isChecked: false, isBlueTeam: true),
     Sportpersonmodel(name: 'blue청맹구', num: 3, isChecked: false, isBlueTeam: true),
     Sportpersonmodel(name: 'blue청훈이', num: 4, isChecked: false, isBlueTeam: true),
