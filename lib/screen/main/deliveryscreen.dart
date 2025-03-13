@@ -13,10 +13,10 @@ class Deliveryscreen extends StatelessWidget {
 
 AppBar DeliveryscreenAppBar() {
   return AppBar(
-    centerTitle: true,
+    scrolledUnderElevation: 0,
     title: Text('도시락 배달',
         style: TextStyle(
-          fontSize: 17.0,
+          fontSize: 21.0,
           fontWeight: FontWeight.w600,
         )),
   );

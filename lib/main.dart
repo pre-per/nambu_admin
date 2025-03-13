@@ -6,11 +6,14 @@ import 'package:nambu_admin/provider/navigationbarprovider.dart';
 import 'package:nambu_admin/provider/noticewritingprovider.dart';
 import 'package:nambu_admin/provider/randomnumprovider.dart';
 import 'package:nambu_admin/provider/sportpersonprovider.dart';
+import 'package:nambu_admin/screen/main/bathscreen.dart';
+import 'package:nambu_admin/screen/main/deliveryscreen.dart';
+import 'package:nambu_admin/screen/main/sportscreen.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:nambu_admin/screen/main/calendarscreen.dart';
+import 'package:nambu_admin/screen/sub/calendar/calendarscreen.dart';
 import 'package:nambu_admin/screen/main/homescreen.dart';
-import 'package:nambu_admin/screen/main/noticescreen.dart';
+import 'package:nambu_admin/screen/sub/calendar/noticescreen.dart';
 import 'package:nambu_admin/screen/main/profilescreen.dart';
 
 void main() async {
@@ -57,8 +60,9 @@ class MyApp extends StatelessWidget {
 class Mainscreen extends StatelessWidget {
   final List<Widget> _screens = [
     Homescreen(),
-    Calendarscreen(),
-    Noticescreen(),
+    Sportscreen(),
+    Bathscreen(),
+    Deliveryscreen(),
     Profilescreen(),
   ];
 
@@ -80,8 +84,9 @@ class Mainscreen extends StatelessWidget {
         backgroundColor: Colors.white,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: '캘린더'),
-          BottomNavigationBarItem(icon: Icon(Icons.campaign), label: '공지'),
+          BottomNavigationBarItem(icon: Icon(Icons.directions_run), label: '운동회'),
+          BottomNavigationBarItem(icon: Icon(Icons.bathtub), label: '목욕탕'),
+          BottomNavigationBarItem(icon: Icon(Icons.delivery_dining), label: '도시락 배달'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
         ],
       ),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/noticecard.dart';
+import 'package:nambu_admin/const/colors.dart';
 import 'package:nambu_admin/main.dart';
-import 'package:nambu_admin/screen/sub/bathscreen.dart';
-import 'package:nambu_admin/screen/sub/deliveryscreen.dart';
-import 'package:nambu_admin/screen/sub/sport/sportscreen.dart';
+import 'package:nambu_admin/screen/sub/calendar/calendarscreen.dart';
+import 'package:nambu_admin/screen/sub/calendar/noticescreen.dart';
+import 'package:nambu_admin/screen/main/bathscreen.dart';
+import 'package:nambu_admin/screen/main/deliveryscreen.dart';
+import 'package:nambu_admin/screen/main/sportscreen.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -32,11 +35,9 @@ class Homescreen extends StatelessWidget {
                       iconData: Icons.emergency,
                     ),
                     const SizedBox(height: 20.0),
-                    HomescreenSportsInkWell(w_mdof, context),
+                    HomescreenCalendarInkWell(w_mdof, context),
                     const SizedBox(height: 20.0),
-                    HomescreenBathInkWell(w_mdof, context),
-                    const SizedBox(height: 20.0),
-                    HomescreenDeliveryInkWell(w_mdof, context),
+                    HomescreenNoticeInkWell(w_mdof, context),
                     const SizedBox(height: 20.0),
                   ],
                 ),
@@ -77,11 +78,11 @@ Container HomescreenGallery(double w_mdof) {
   );
 }
 
-InkWell HomescreenSportsInkWell(double w_mdof, BuildContext context) {
+InkWell HomescreenCalendarInkWell(double w_mdof, BuildContext context) {
   return InkWell(
     onTap: () {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => Sportscreen()));
+          .push(MaterialPageRoute(builder: (_) => Calendarscreen()));
     },
     child: Ink(
       width: w_mdof,
@@ -91,49 +92,28 @@ InkWell HomescreenSportsInkWell(double w_mdof, BuildContext context) {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Center(
-        child: Text('봄 운동회 바로가기',
+        child: Text('캘린더 바로가기',
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
       ),
     ),
   );
 }
 
-InkWell HomescreenBathInkWell(double w_mdof, BuildContext context) {
+InkWell HomescreenNoticeInkWell(double w_mdof , BuildContext context) {
   return InkWell(
     onTap: () {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => Bathscreen()));
+          .push(MaterialPageRoute(builder: (_) => Noticescreen()));
     },
     child: Ink(
       width: w_mdof,
       height: 70.0,
       decoration: BoxDecoration(
-        color: Color(0xFFFFDAC1),
+        color: AWESOME_GREEN,
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Center(
-        child: Text('목욕탕 바로가기',
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
-      ),
-    ),
-  );
-}
-
-InkWell HomescreenDeliveryInkWell(double w_mdof, BuildContext context) {
-  return InkWell(
-    onTap: () {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => Deliveryscreen()));
-    },
-    child: Ink(
-      width: w_mdof,
-      height: 70.0,
-      decoration: BoxDecoration(
-        color: Color(0xFFC4F4C4),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Center(
-        child: Text('도시락 배달 바로가기',
+        child: Text('공지화면 바로가기',
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
       ),
     ),

@@ -13,10 +13,10 @@ class Bathscreen extends StatelessWidget {
 
 AppBar BathscreenAppBar() {
   return AppBar(
-    centerTitle: true,
+    scrolledUnderElevation: 0,
     title: Text('목욕탕',
         style: TextStyle(
-          fontSize: 17.0,
+          fontSize: 21.0,
           fontWeight: FontWeight.w600,
         )),
   );

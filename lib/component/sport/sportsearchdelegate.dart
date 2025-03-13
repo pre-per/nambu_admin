@@ -4,7 +4,10 @@ import 'package:nambu_admin/provider/sportpersonprovider.dart';
 import 'package:provider/provider.dart';
 
 class SportSearchDelegate extends SearchDelegate<String> {
-  final List<String> items = ['item 0', 'item 1', 'item 2', 'item 3', 'item 4'];
+  @override
+  String? get searchFieldLabel => '번호 또는 이름 입력';
+  @override
+  TextStyle? get searchFieldStyle => TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600, color: Colors.grey[600]);
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -38,16 +41,15 @@ class SportSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     final provider = Provider.of<SportpersonProvider>(context);
-    final suggestions = List.generate(4, (index) => 'item $index')
-        .where((item) => item.contains(query))
-        .toList();
+    final suggestions =
+        provider.teamList.where((item) => item.name.contains(query) || item.num.toString().contains(query)).toList();
 
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (context, index) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0),
-          child: Sportpersonalcard(index: index),
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Sportpersonalcard(person: suggestions[index]),
         );
       },
     );

@@ -69,18 +69,34 @@ class Randomnum extends StatelessWidget {
               '뽑힌 숫자',
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
             ),
-            Text(
-              provider.randomBool ? '청팀' : '홍팀',
-              style: TextStyle(
-                  color: provider.randomBool
-                      ? Colors.blue
-                      : Colors.red,
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.w600),
+            TweenAnimationBuilder<double>(
+              duration: Duration(milliseconds: 200),
+              tween: Tween<double>(
+                begin: provider.isAnimating ? 40.0 : 35.0,
+                end: provider.isAnimating ? 35.0 : 40.0,
+              ),
+              builder: (context, size, child) {
+                return Text(
+                  provider.randomBool ? '청팀' : '홍팀',
+                  style: TextStyle(
+                      color: provider.randomBool ? Colors.blue : Colors.red,
+                      fontSize: size,
+                      fontWeight: FontWeight.w600),
+                );
+              },
             ),
-            Text(
-              '${provider.drawedNum}번',
-              style: TextStyle(fontSize: 60.0, fontWeight: FontWeight.w600),
+            TweenAnimationBuilder<double>(
+              duration: Duration(milliseconds: 200),
+              tween: Tween<double>(
+                begin: provider.isAnimating ? 60.0 : 50.0,
+                end: provider.isAnimating ? 50.0 : 60.0,
+              ),
+              builder: (context, size, child) {
+                return Text(
+                  '${provider.drawedNum}번',
+                  style: TextStyle(fontSize: size, fontWeight: FontWeight.w600),
+                );
+              },
             ),
             provider.showConfetti
                 ? Positioned.fill(
