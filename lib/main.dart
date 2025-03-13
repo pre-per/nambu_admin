@@ -16,6 +16,9 @@ import 'package:nambu_admin/screen/main/homescreen.dart';
 import 'package:nambu_admin/screen/sub/calendar/noticescreen.dart';
 import 'package:nambu_admin/screen/main/profilescreen.dart';
 
+final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+    GlobalKey<ScaffoldMessengerState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('ko_KR', null);
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -84,9 +88,11 @@ class Mainscreen extends StatelessWidget {
         backgroundColor: Colors.white,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
-          BottomNavigationBarItem(icon: Icon(Icons.directions_run), label: '운동회'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.directions_run), label: '운동회'),
           BottomNavigationBarItem(icon: Icon(Icons.bathtub), label: '목욕탕'),
-          BottomNavigationBarItem(icon: Icon(Icons.delivery_dining), label: '도시락 배달'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.delivery_dining), label: '도시락 배달'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '프로필'),
         ],
       ),
