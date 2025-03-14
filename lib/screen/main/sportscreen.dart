@@ -12,6 +12,7 @@ class Sportscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double w_mdof = MediaQuery.of(context).size.width;
+    final provider = Provider.of<SportpersonProvider>(context);
 
     return GestureDetector(
       onTap: () {
@@ -41,8 +42,10 @@ class Sportscreen extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w600)),
-                            const SizedBox(height: 20.0),
+                            TeamScore(context, true),
+                            const SizedBox(height: 10.0),
                             SportscreenGetMore(context, w_mdof, true),
+                            const SizedBox(height: 10.0),
                           ],
                         ),
                         VerticalDivider(color: Colors.grey[300], width: 0.5),
@@ -53,8 +56,10 @@ class Sportscreen extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w600)),
-                            const SizedBox(height: 20.0),
+                            TeamScore(context, false),
+                            const SizedBox(height: 10.0),
                             SportscreenGetMore(context, w_mdof, false),
+                            const SizedBox(height: 10.0),
                           ],
                         ),
                       ],
@@ -66,7 +71,8 @@ class Sportscreen extends StatelessWidget {
                           fontSize: 20.0, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 20.0),
                   SportscreenRandomNum(context),
-                  const SizedBox(height: 20.0),
+                  const SizedBox(height: 10.0),
+                  SportscreenTimer(context),
                 ],
               ),
             ],
@@ -136,7 +142,7 @@ GestureDetector SportscreenGetMore(
     },
     child: Container(
       width: w_mdof * 0.4,
-      height: 80.0,
+      height: 50.0,
       decoration: BoxDecoration(
         color: isBlueTeam ? Color(0xFFD0E8F2) : Color(0xFFF4C2C2),
         borderRadius: BorderRadius.circular(10.0),
@@ -186,5 +192,65 @@ GestureDetector SportscreenRandomNum(BuildContext context) {
         ),
       ),
     ),
+  );
+}
+
+GestureDetector SportscreenTimer(BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => Randomnum()));
+    },
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 70.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        color: Color(0xFFFFECB3),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.timer_outlined),
+            const SizedBox(width: 20.0),
+            Expanded(
+                child: Text(
+                  '타이머',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+                )),
+            Icon(Icons.navigate_next, color: Colors.grey[600]),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Row TeamScore(BuildContext context, bool isBlue) {
+  final provider = Provider.of<SportpersonProvider>(context);
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      IconButton(
+        onPressed: () {
+          provider.addScore(false, isBlue);
+        },
+        icon: Icon(Icons.remove),
+      ),
+      const SizedBox(width: 5.0),
+      Text(
+        '${isBlue ? provider.blueScore : provider.redScore}점',
+        style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w600),
+      ),
+      const SizedBox(width: 5.0),
+      IconButton(
+        onPressed: () {
+          provider.addScore(true, isBlue);
+        },
+        icon: Icon(Icons.add),
+      ),
+    ],
   );
 }

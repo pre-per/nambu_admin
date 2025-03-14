@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
+          scrolledUnderElevation: 0,
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           unselectedItemColor: Colors.grey,

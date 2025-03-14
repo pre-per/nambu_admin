@@ -13,6 +13,8 @@ class SportpersonProvider with ChangeNotifier {
     Sportpersonmodel(name: 'red홍훈이', num: 4, isChecked: false, isBlueTeam: false),
     Sportpersonmodel(name: 'red홍홍홍', num: 5, isChecked: false, isBlueTeam: false),
   ];
+  int _blueScore = 0;
+  int _redScore = 0;
 
   List<Sportpersonmodel> get teamList => _teamList;
 
@@ -22,8 +24,22 @@ class SportpersonProvider with ChangeNotifier {
   int get blueCheckedCount => blueTeam.where((item) => item.isChecked).length;
   int get redCheckedCount => redTeam.where((item) => item.isChecked).length;
 
+  int get blueScore => _blueScore;
+  int get redScore => _redScore;
+
   void toggleCheck(Sportpersonmodel person) {
     person.isChecked = !person.isChecked;
+    notifyListeners();
+  }
+
+  void addScore(bool isPlus, bool isBlueTeam) {
+    if (isBlueTeam) {
+      isPlus ? _blueScore += 50 : _blueScore -= 50;
+      print("blue team added");
+    } else {
+      isPlus ? _redScore += 50 : _redScore -= 50;
+      print("red team added");
+    }
     notifyListeners();
   }
 }
