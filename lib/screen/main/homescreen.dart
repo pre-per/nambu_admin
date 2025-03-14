@@ -35,9 +35,18 @@ class Homescreen extends StatelessWidget {
                       iconData: Icons.emergency,
                     ),
                     const SizedBox(height: 20.0),
-                    HomescreenCalendarInkWell(w_mdof, context),
-                    const SizedBox(height: 20.0),
-                    HomescreenNoticeInkWell(w_mdof, context),
+                    IntrinsicHeight(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const SizedBox(width: 10.0),
+                          HomescreenCalendarInkWell(w_mdof, context),
+                          VerticalDivider(color: Colors.grey[200], width: 0.05),
+                          HomescreenNoticeInkWell(w_mdof, context),
+                          const SizedBox(width: 10.0),
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 20.0),
                   ],
                 ),
@@ -85,14 +94,14 @@ InkWell HomescreenCalendarInkWell(double w_mdof, BuildContext context) {
           .push(MaterialPageRoute(builder: (_) => Calendarscreen()));
     },
     child: Ink(
-      width: w_mdof,
-      height: 70.0,
+      width: w_mdof * 0.4,
+      height: 100,
       decoration: BoxDecoration(
         color: Color(0xFFFFD1DC),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Center(
-        child: Text('캘린더 바로가기',
+        child: Text('캘린더',
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
       ),
     ),
@@ -106,14 +115,14 @@ InkWell HomescreenNoticeInkWell(double w_mdof , BuildContext context) {
           .push(MaterialPageRoute(builder: (_) => Noticescreen()));
     },
     child: Ink(
-      width: w_mdof,
-      height: 70.0,
+      width: w_mdof * 0.4,
+      height: 100.0,
       decoration: BoxDecoration(
         color: AWESOME_GREEN,
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Center(
-        child: Text('공지화면 바로가기',
+        child: Text('공지',
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
       ),
     ),

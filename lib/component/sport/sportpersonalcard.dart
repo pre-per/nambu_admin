@@ -3,6 +3,8 @@ import 'package:nambu_admin/main.dart';
 import 'package:nambu_admin/model/sportpersonmodel.dart';
 import 'package:nambu_admin/provider/sportpersonprovider.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Sportpersonalcard extends StatelessWidget {
   final Sportpersonmodel person;
@@ -89,12 +91,31 @@ class Sportpersonalcard extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 12.0),
-                            Text(person.phoneNum,
-                                style: TextStyle(
-                                  fontSize: 17.0,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.grey[600],
-                                )),
+                            GestureDetector(
+                              onTap: () {
+                                if (person.phoneNum.contains('전화번호')) {
+                                  print("Incorrect phoneNum");
+                                } else {
+                                  launchUrlString('tel://${person.phoneNum}');
+                                  print("Call");
+                                }
+                              },
+                              child: IntrinsicWidth(
+                                child: SizedBox(
+                                  child: Column(
+                                    children: [
+                                      Text(person.phoneNum,
+                                          style: TextStyle(
+                                            fontSize: 17.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.grey[600],
+                                          )),
+                                      Divider(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                             const SizedBox(height: 22.0),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

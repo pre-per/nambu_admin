@@ -12,6 +12,7 @@
 .swiftpm/
 migrate_working_dir/
 pubspec.lock
+devtools_options.yaml
 
 # IntelliJ related
 *.iml

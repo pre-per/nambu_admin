@@ -16,8 +16,6 @@ import 'package:nambu_admin/screen/main/homescreen.dart';
 import 'package:nambu_admin/screen/sub/calendar/noticescreen.dart';
 import 'package:nambu_admin/screen/main/profilescreen.dart';
 
-final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-    GlobalKey<ScaffoldMessengerState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +41,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scaffoldMessengerKey: scaffoldMessengerKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
