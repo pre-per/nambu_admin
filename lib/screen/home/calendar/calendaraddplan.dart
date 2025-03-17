@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/categoryselectmodal.dart';
 import 'package:provider/provider.dart';
-import 'package:nambu_admin/provider/calendaraddplanprovider.dart';
+import 'package:nambu_admin/provider/calendar/calendaraddplanprovider.dart';
 
 class CalendarAddplan extends StatelessWidget {
   const CalendarAddplan({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/provider/calendarprovider.dart';
+import 'package:nambu_admin/provider/calendar/calendarprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 

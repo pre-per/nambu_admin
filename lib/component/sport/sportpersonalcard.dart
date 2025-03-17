@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/main.dart';
 import 'package:nambu_admin/model/sportpersonmodel.dart';
-import 'package:nambu_admin/provider/sportpersonprovider.dart';
+import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';

@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/noticecard.dart';
 import 'package:nambu_admin/const/colors.dart';
 import 'package:nambu_admin/main.dart';
-import 'package:nambu_admin/screen/sub/calendar/calendarscreen.dart';
-import 'package:nambu_admin/screen/sub/calendar/noticescreen.dart';
-import 'package:nambu_admin/screen/main/bathscreen.dart';
-import 'package:nambu_admin/screen/main/deliveryscreen.dart';
-import 'package:nambu_admin/screen/main/sportscreen.dart';
+import 'package:nambu_admin/screen/home/calendar/calendarscreen.dart';
+import 'package:nambu_admin/screen/home/notice/noticescreen.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});

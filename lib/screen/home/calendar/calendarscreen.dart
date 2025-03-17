@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/calendar/calendarplancard.dart';
 import 'package:nambu_admin/component/calendar/calendarwidget.dart';
-import 'package:nambu_admin/screen/sub/calendar/calendaraddplan.dart';
+import 'package:nambu_admin/screen/home/calendar/calendaraddplan.dart';
 
 class Calendarscreen extends StatelessWidget {
   const Calendarscreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:nambu_admin/provider/randomnumprovider.dart';
+import 'package:nambu_admin/provider/sport/randomnumprovider.dart';
 import 'package:provider/provider.dart';
 
 class Randomnum extends StatelessWidget {

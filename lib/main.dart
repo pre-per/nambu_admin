@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nambu_admin/provider/calendaraddplanprovider.dart';
-import 'package:nambu_admin/provider/calendarprovider.dart';
+import 'package:nambu_admin/provider/calendar/calendaraddplanprovider.dart';
+import 'package:nambu_admin/provider/calendar/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
-import 'package:nambu_admin/provider/noticewritingprovider.dart';
-import 'package:nambu_admin/provider/randomnumprovider.dart';
-import 'package:nambu_admin/provider/sportpersonprovider.dart';
-import 'package:nambu_admin/screen/main/bathscreen.dart';
-import 'package:nambu_admin/screen/main/deliveryscreen.dart';
-import 'package:nambu_admin/screen/main/sportscreen.dart';
+import 'package:nambu_admin/provider/notice/noticewritingprovider.dart';
+import 'package:nambu_admin/provider/sport/randomnumprovider.dart';
+import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
+import 'package:nambu_admin/screen/bath/bathscreen.dart';
+import 'package:nambu_admin/screen/delivery/deliveryscreen.dart';
+import 'package:nambu_admin/screen/sport/sportscreen.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:nambu_admin/screen/sub/calendar/calendarscreen.dart';
-import 'package:nambu_admin/screen/main/homescreen.dart';
-import 'package:nambu_admin/screen/sub/calendar/noticescreen.dart';
-import 'package:nambu_admin/screen/main/profilescreen.dart';
+import 'package:nambu_admin/screen/home/homescreen.dart';
+import 'package:nambu_admin/screen/profile/profilescreen.dart';
 
 
 void main() async {

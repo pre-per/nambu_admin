@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/sport/sportpersonalcard.dart';
-import 'package:nambu_admin/provider/sportpersonprovider.dart';
-import 'package:nambu_admin/screen/sub/sport/randomnum.dart';
-import 'package:nambu_admin/screen/sub/sport/teamview.dart';
+import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
+import 'package:nambu_admin/screen/sport/randomnum.dart';
+import 'package:nambu_admin/screen/sport/teamview.dart';
 import 'package:nambu_admin/component/sport/sportsearchdelegate.dart';
 import 'package:provider/provider.dart';
 

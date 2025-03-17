@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/screen/sub/calendar/calendarcarddetails.dart';
+import 'package:nambu_admin/screen/home/calendar/calendarcarddetails.dart';
 
 class Calendarplancard extends StatefulWidget {
   IconData? iconData;
