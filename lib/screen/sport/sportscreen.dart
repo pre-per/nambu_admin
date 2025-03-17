@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/sport/sportpersonalcard.dart';
 import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
+import 'package:nambu_admin/screen/sport/addPerson.dart';
 import 'package:nambu_admin/screen/sport/randomnum.dart';
 import 'package:nambu_admin/screen/sport/teamview.dart';
 import 'package:nambu_admin/component/sport/sportsearchdelegate.dart';
@@ -72,6 +73,7 @@ class Sportscreen extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   SportscreenRandomNum(context),
                   const SizedBox(height: 10.0),
+                  SportscreenAddPerson(context),
                 ],
               ),
             ],
@@ -186,6 +188,39 @@ GestureDetector SportscreenRandomNum(BuildContext context) {
               '랜덤 숫자뽑기',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
             )),
+            Icon(Icons.navigate_next, color: Colors.grey[600]),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+GestureDetector SportscreenAddPerson(BuildContext context) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => SportAddPerson()));
+    },
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      height: 70.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+        color: Color(0xFFFFECB3),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.add_reaction_outlined),
+            const SizedBox(width: 20.0),
+            Expanded(
+                child: Text(
+                  '참여자 추가하기',
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+                )),
             Icon(Icons.navigate_next, color: Colors.grey[600]),
           ],
         ),

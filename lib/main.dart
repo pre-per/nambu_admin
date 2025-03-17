@@ -29,7 +29,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => Calendarprovider()),
         ChangeNotifierProvider(create: (_) => NoticeProvider()),
         ChangeNotifierProvider(create: (_) => Calendaraddplanprovider()),
-        ChangeNotifierProvider(create: (_) => SportpersonProvider()),
+        ChangeNotifierProvider(create: (_) => SportpersonProvider()..listentoUser()),
         ChangeNotifierProvider(create: (_) => RandomnumProvider()),
       ],
       child: MyApp(),

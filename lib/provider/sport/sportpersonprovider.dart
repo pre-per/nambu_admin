@@ -1,18 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nambu_admin/model/sportpersonmodel.dart';
 
 class SportpersonProvider with ChangeNotifier {
-  List<Sportpersonmodel> _teamList = [
-    Sportpersonmodel(name: '짱구', num: 1, adultNum: 5, childNum: 2, isChecked: false, isBlueTeam: true, phoneNum: '010-1234-5678'),
-    Sportpersonmodel(name: 'blue청철수', num: 2, adultNum: 4, childNum: 3, isChecked: false, isBlueTeam: true, phoneNum: '010-5678-1234'),
-    Sportpersonmodel(name: 'blue청맹구', num: 3, isChecked: false, isBlueTeam: true),
-    Sportpersonmodel(name: 'blue청훈이', num: 4, isChecked: false, isBlueTeam: true),
-    Sportpersonmodel(name: 'red홍짱구', num: 1, isChecked: false, isBlueTeam: false),
-    Sportpersonmodel(name: 'red홍철수', num: 2, isChecked: false, isBlueTeam: false),
-    Sportpersonmodel(name: 'red홍맹구', num: 3, isChecked: false, isBlueTeam: false),
-    Sportpersonmodel(name: 'red홍훈이', num: 4, isChecked: false, isBlueTeam: false),
-    Sportpersonmodel(name: 'red홍홍홍', num: 5, isChecked: false, isBlueTeam: false),
-  ];
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  List<Sportpersonmodel> _teamList = [];
   int _blueScore = 0;
   int _redScore = 0;
 
@@ -41,5 +34,15 @@ class SportpersonProvider with ChangeNotifier {
       print("red team added");
     }
     notifyListeners();
+  }
+
+  void listentoUser() {
+    firestore.collection('sportUserInformation').snapshots().listen((snapshot) {
+      _teamList = snapshot.docs.map((doc) {
+        return Sportpersonmodel.fromMap(doc.data());
+      }).toList();
+
+      notifyListeners();
+    });
   }
 }
