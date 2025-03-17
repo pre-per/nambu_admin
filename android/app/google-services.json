@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "716375699807",
+    "project_id": "nambu-admin-20246",
+    "storage_bucket": "nambu-admin-20246.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716375699807:android:ceb0090af4918d291a06ea",
+        "android_client_info": {
+          "package_name": "com.example.nambu_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnwrS7i0ZUsdYp0FrgtbjbwxYnu7vYzRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nambu_admin/firebase_options.dart';
 import 'package:nambu_admin/provider/calendar/calendaraddplanprovider.dart';
 import 'package:nambu_admin/provider/calendar/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
@@ -18,7 +19,7 @@ import 'package:nambu_admin/screen/profile/profilescreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await initializeDateFormatting('ko_KR', null);
   runApp(
