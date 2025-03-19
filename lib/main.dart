@@ -7,6 +7,7 @@ import 'package:nambu_admin/provider/calendar/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
 import 'package:nambu_admin/provider/notice/noticewritingprovider.dart';
 import 'package:nambu_admin/provider/sport/randomnumprovider.dart';
+import 'package:nambu_admin/provider/sport/sportAddPersonProvider.dart';
 import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
 import 'package:nambu_admin/screen/bath/bathscreen.dart';
 import 'package:nambu_admin/screen/delivery/deliveryscreen.dart';
@@ -31,6 +32,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => Calendaraddplanprovider()),
         ChangeNotifierProvider(create: (_) => SportpersonProvider()..listentoUser()),
         ChangeNotifierProvider(create: (_) => RandomnumProvider()),
+        ChangeNotifierProvider(create: (_) => SportAddPersonProvider()),
       ],
       child: MyApp(),
     ),
@@ -52,6 +54,9 @@ class MyApp extends StatelessWidget {
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           unselectedItemColor: Colors.grey,
           selectedItemColor: Colors.black,
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.white,
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: GoogleFonts.notoSansKrTextTheme(),

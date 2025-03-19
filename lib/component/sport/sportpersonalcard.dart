@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/const/colors.dart';
 import 'package:nambu_admin/main.dart';
 import 'package:nambu_admin/model/sportpersonmodel.dart';
 import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
@@ -76,8 +77,8 @@ class Sportpersonalcard extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5.0),
                                     color: person.isBlueTeam
-                                        ? Color(0xFFD0E8F2)
-                                        : Color(0xFFF4C2C2),
+                                        ? BLUE_TEAM_COLOR
+                                        : RED_TEAM_COLOR,
                                   ),
                                   child: Center(
                                     child: Text(
@@ -214,7 +215,7 @@ class Sportpersonalcard extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: 70.0,
           decoration: BoxDecoration(
-            color: person.isBlueTeam ? Color(0xFFD0E8F2) : Color(0xFFF4C2C2),
+            color: person.isBlueTeam ? BLUE_TEAM_COLOR : RED_TEAM_COLOR,
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(

@@ -20,29 +20,48 @@ class SportpersonProvider with ChangeNotifier {
   int get blueScore => _blueScore;
   int get redScore => _redScore;
 
-  void toggleCheck(Sportpersonmodel person) {
+  Future<void> toggleCheck(Sportpersonmodel person) async {
     person.isChecked = !person.isChecked;
+    await firestore.collection('sportUserInfo').doc(person.docId).update({'isChecked': person.isChecked});
     notifyListeners();
   }
 
-  void addScore(bool isPlus, bool isBlueTeam) {
+  Future<void> addPerson(Sportpersonmodel person) async {
+    DocumentReference docRef = await firestore.collection('sportUserInfo').add(person.toMap());
+    person.docId = docRef.id;
+    notifyListeners();
+  }
+
+  Future<void> addScore(bool isPlus, bool isBlueTeam) async {
+    DocumentSnapshot teamScoreDoc = await firestore.collection('sportTeamScore').doc(isBlueTeam ? 'blueTeam' : 'redTeam').get();
+
+    int currentScore = (teamScoreDoc.data() as Map<String, dynamic>)['num'] ?? -1;
+    int newScore = isPlus ? currentScore + 50 : currentScore - 50;
+
+    await firestore.collection('sportTeamScore').doc(isBlueTeam ? 'blueTeam' : 'redTeam').update({'num': newScore});
+
     if (isBlueTeam) {
-      isPlus ? _blueScore += 50 : _blueScore -= 50;
-      print("blue team added");
+      _blueScore = newScore;
+      print("Blue Team Score Updated: $_blueScore");
     } else {
-      isPlus ? _redScore += 50 : _redScore -= 50;
-      print("red team added");
+      _redScore = newScore;
+      print("Red Team Score Updated: $_redScore");
     }
+
     notifyListeners();
   }
 
   void listentoUser() {
-    firestore.collection('sportUserInformation').snapshots().listen((snapshot) {
+    firestore.collection('sportUserInfo').snapshots().listen((snapshot) {
       _teamList = snapshot.docs.map((doc) {
-        return Sportpersonmodel.fromMap(doc.data());
+        return Sportpersonmodel.fromMap(doc);
       }).toList();
-
+      _sortList();
       notifyListeners();
     });
+  }
+
+  void _sortList() {
+    _teamList.sort((a, b) => a.num.compareTo(b.num));
   }
 }

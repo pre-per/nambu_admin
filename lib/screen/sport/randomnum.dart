@@ -114,7 +114,6 @@ class Randomnum extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
         child: InkWell(
           onTap: () {
             provider.drawNum();

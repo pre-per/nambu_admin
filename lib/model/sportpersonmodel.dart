@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Sportpersonmodel {
+  String docId;
   String name;
   String phoneNum;
   int num;
@@ -9,6 +12,7 @@ class Sportpersonmodel {
 
 
   Sportpersonmodel({
+    this.docId = '',
     this.name = '',
     this.num = -1,
     this.adultNum = -1,
@@ -29,8 +33,10 @@ class Sportpersonmodel {
       'isBlueTeam': isBlueTeam,
     };
   }
-  factory Sportpersonmodel.fromMap(Map<String, dynamic> map) {
+  factory Sportpersonmodel.fromMap(DocumentSnapshot doc) {
+    final map = doc.data() as Map<String, dynamic>;
     return Sportpersonmodel(
+      docId: doc.id,
       name: map['name'] ?? 'Untitled',
       phoneNum: map['phoneNum'] ?? '전화번호 기록 없음',
       num: map['num'] ?? -1,

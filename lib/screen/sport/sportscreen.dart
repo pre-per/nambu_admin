@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/sport/sportpersonalcard.dart';
+import 'package:nambu_admin/const/colors.dart';
 import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
 import 'package:nambu_admin/screen/sport/addPerson.dart';
 import 'package:nambu_admin/screen/sport/randomnum.dart';
@@ -145,7 +146,7 @@ GestureDetector SportscreenGetMore(
       width: w_mdof * 0.4,
       height: 50.0,
       decoration: BoxDecoration(
-        color: isBlueTeam ? Color(0xFFD0E8F2) : Color(0xFFF4C2C2),
+        color: isBlueTeam ? BLUE_TEAM_COLOR : RED_TEAM_COLOR,
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Padding(
