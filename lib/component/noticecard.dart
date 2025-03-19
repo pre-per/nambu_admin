@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nambu_admin/screen/home/notice/noticedetails.dart';
 
 class Noticecard extends StatefulWidget {
-  IconData? iconData;
-  String title;
-  Color backgroundColor;
+  final IconData? iconData;
+  final String title;
+  final Color backgroundColor;
 
-  Noticecard({
+  const Noticecard({
     this.iconData,
     this.title = 'Empty Title',
     this.backgroundColor = Colors.white,

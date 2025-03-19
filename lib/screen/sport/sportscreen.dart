@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/component/sport/sportpersonalcard.dart';
 import 'package:nambu_admin/const/colors.dart';
 import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
 import 'package:nambu_admin/screen/sport/addPerson.dart';
@@ -14,14 +13,12 @@ class Sportscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double w_mdof = MediaQuery.of(context).size.width;
-    final provider = Provider.of<SportpersonProvider>(context);
 
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: SportscreenAppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -96,7 +93,6 @@ GestureDetector SportscreenSearchBar(BuildContext context) {
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(10.0),
-        // border: Border.all(color: Colors.grey, width: 0.2),
       ),
       child: Padding(
         padding: const EdgeInsets.all(10.0),

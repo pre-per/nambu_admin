@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:nambu_admin/const/colors.dart';
 import 'package:nambu_admin/provider/notice/noticewritingprovider.dart';
 import 'package:provider/provider.dart';

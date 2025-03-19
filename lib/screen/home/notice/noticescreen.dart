@@ -7,8 +7,6 @@ class Noticescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double w_mdof = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: NoticescreenAppBar(context),
       body: ListView(

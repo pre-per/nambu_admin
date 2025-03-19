@@ -8,8 +8,6 @@ class Calendarscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double w_mdof = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: CalendarscreenAppBar(context),
       body: ListView(
