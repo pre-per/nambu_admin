@@ -21,29 +21,21 @@ class Homescreen extends StatelessWidget {
             children: [
               HomescreenGallery(w_mdof),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 7.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Noticecard(
-                      backgroundColor: Color(0xffffc2bd),
-                      title: '공지사항을 확인하세요',
-                      iconData: Icons.emergency,
-                    ),
                     const SizedBox(height: 20.0),
-                    IntrinsicHeight(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const SizedBox(width: 10.0),
-                          HomescreenCalendarInkWell(w_mdof, context),
-                          VerticalDivider(color: Colors.grey[200], width: 0.05),
-                          HomescreenNoticeInkWell(w_mdof, context),
-                          const SizedBox(width: 10.0),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20.0),
+                    HomescreenTextDesign(
+                        text: '공지사항', destination: Noticescreen()),
+                    const SizedBox(height: 10.0),
+                    HomescreenNoticeCard(title: '남부종합사회복지관 공지', date: '2025-03-19'),
+                    HomescreenNoticeCard(title: '남부종합사회복지관 공지', date: '2025-03-19'),
+                    HomescreenNoticeCard(title: '남부종합사회복지관 공지', date: '2025-03-19'),
+                    Divider(thickness: 0.5, height: 40),
+                    HomescreenTextDesign(
+                        text: '캘린더', destination: Calendarscreen()),
+                    Divider(thickness: 0.5, height: 40),
                   ],
                 ),
               ),
@@ -104,7 +96,7 @@ InkWell HomescreenCalendarInkWell(double w_mdof, BuildContext context) {
   );
 }
 
-InkWell HomescreenNoticeInkWell(double w_mdof , BuildContext context) {
+InkWell HomescreenNoticeInkWell(double w_mdof, BuildContext context) {
   return InkWell(
     onTap: () {
       Navigator.of(context)
@@ -123,4 +115,86 @@ InkWell HomescreenNoticeInkWell(double w_mdof , BuildContext context) {
       ),
     ),
   );
+}
+
+class HomescreenTextDesign extends StatelessWidget {
+  final String text;
+  final Widget destination;
+
+  const HomescreenTextDesign(
+      {required this.text, required this.destination, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        IntrinsicWidth(
+          child: Column(
+            children: [
+              Text(text,
+                  style:
+                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+              Divider(color: MAIN_YELLOW_COLOR, height: 3.0, thickness: 3.0),
+            ],
+          ),
+        ),
+        GestureDetector(
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => destination));
+            },
+            child: Text(
+              '더보기 >',
+              style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey[600]),
+            ))
+      ],
+    );
+    ;
+  }
+}
+
+class HomescreenNoticeCard extends StatelessWidget {
+  final String title;
+  final String date;
+
+  const HomescreenNoticeCard(
+      {required this.title, required this.date, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 3.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          color: Colors.transparent,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                  child: Text(
+                title,
+                style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black),
+              )),
+              Text(
+                date,
+                style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[600]),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

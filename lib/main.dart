@@ -30,7 +30,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => Calendarprovider()),
         ChangeNotifierProvider(create: (_) => NoticeProvider()),
         ChangeNotifierProvider(create: (_) => Calendaraddplanprovider()),
-        ChangeNotifierProvider(create: (_) => SportpersonProvider()..listentoUser()),
+        ChangeNotifierProvider(create: (_) => SportpersonProvider()..listenToUser()..listenToScore()),
         ChangeNotifierProvider(create: (_) => RandomnumProvider()),
         ChangeNotifierProvider(create: (_) => SportAddPersonProvider()),
       ],
