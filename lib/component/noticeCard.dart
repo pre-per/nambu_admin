@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:nambu_admin/model/noticemodel.dart';
+import 'package:nambu_admin/screen/home/notice/noticedetails.dart';
 
 class NoticeCard extends StatelessWidget {
-  final String title;
-  final String date;
+  final NoticeModel notice;
 
-  const NoticeCard(
-      {required this.title, required this.date, super.key});
+  const NoticeCard({required this.notice, super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => NoticeDetails(notice: notice)));
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Container(
@@ -24,7 +27,7 @@ class NoticeCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      notice.title,
                       style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.w600,
@@ -34,7 +37,7 @@ class NoticeCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      date,
+                      notice.dateTime,
                       style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w500,
@@ -47,9 +50,7 @@ class NoticeCard extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
                   '>',
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.grey[600]),
+                  style: TextStyle(fontSize: 20.0, color: Colors.grey[400]),
                 ),
               )
             ],

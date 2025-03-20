@@ -21,9 +21,12 @@ class Noticescreen extends StatelessWidget {
               child: ListView.builder(
                   itemCount: provider.noticeList.length,
                   itemBuilder: (context, index) {
-                    return NoticeCard(
-                        title: provider.noticeList[index].title,
-                        date: provider.noticeList[index].dateTime);
+                    return Column(
+                      children: [
+                        Divider(color: Colors.grey, thickness: 0.5),
+                        NoticeCard(notice: provider.noticeList[index]),
+                      ],
+                    );
                   }),
             ),
           ],

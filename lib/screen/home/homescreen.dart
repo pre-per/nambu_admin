@@ -27,7 +27,7 @@ class Homescreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HomescreenNoticeWidget(),
-                    Divider(thickness: 0.5, height: 40),
+                    Divider(thickness: 0.5, height: 20),
                     HomescreenCalendarWidget(),
                     Divider(thickness: 0.5, height: 40),
                   ],
@@ -87,8 +87,12 @@ class HomescreenNoticeWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: List.generate(
               notice.length > 3 ? 3 : notice.length,
-              (index) => NoticeCard(
-                  title: notice[index].title, date: notice[index].dateTime)),
+              (index) => Column(
+                children: [
+                  Divider(color: Colors.grey, thickness: 0.5),
+                  NoticeCard(notice: notice[index]),
+                ],
+              )),
         ),
       ],
     );
