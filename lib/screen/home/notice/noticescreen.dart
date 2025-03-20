@@ -50,7 +50,6 @@ AppBar NoticescreenAppBar(BuildContext context) {
                 color: Colors.black)),
         GestureDetector(
           onTap: () {
-            print(Provider.of<NoticeProvider>(context, listen: false).noticeList.length);
             Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => Noticewriting()),
             );
