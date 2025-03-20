@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nambu_admin/component/calendar/calendarwidget.dart';
 import 'package:nambu_admin/const/colors.dart';
 import 'package:nambu_admin/main.dart';
+import 'package:nambu_admin/provider/notice/noticeProvider.dart';
 import 'package:nambu_admin/screen/home/calendar/calendarscreen.dart';
 import 'package:nambu_admin/screen/home/notice/noticescreen.dart';
 import 'package:nambu_admin/component/noticeCard.dart';
+import 'package:provider/provider.dart';
 
 class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
@@ -77,16 +79,17 @@ class HomescreenNoticeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notice = Provider.of<NoticeProvider>(context).noticeList;
     return Column(
       children: [
-        HomescreenTextDesign(
-            text: '공지사항', destination: Noticescreen()),
-        NoticeCard(
-            title: '[남부종복] 2025 봄 운동회 취소 안내', date: '2025-03-19'),
-        NoticeCard(
-            title: '[중요] 울주군시설관리공단 수강생 접수 안내', date: '2025-03-16'),
-        NoticeCard(
-            title: '[정보] 아침 식사의 중요성', date: '2025-03-19'),
+        HomescreenTextDesign(text: '공지사항', destination: Noticescreen()),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(
+              notice.length > 3 ? 3 : notice.length,
+              (index) => NoticeCard(
+                  title: notice[index].title, date: notice[index].dateTime)),
+        ),
       ],
     );
   }
@@ -99,8 +102,7 @@ class HomescreenCalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        HomescreenTextDesign(
-            text: '캘린더', destination: Calendarscreen()),
+        HomescreenTextDesign(text: '캘린더', destination: Calendarscreen()),
         Container(
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
@@ -132,7 +134,7 @@ class HomescreenTextDesign extends StatelessWidget {
               children: [
                 Text(text,
                     style:
-                    TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
                 Divider(color: MAIN_YELLOW_COLOR, height: 3.0, thickness: 3.0),
               ],
             ),
@@ -155,5 +157,3 @@ class HomescreenTextDesign extends StatelessWidget {
     ;
   }
 }
-
-

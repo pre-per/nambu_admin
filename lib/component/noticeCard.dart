@@ -32,6 +32,7 @@ class NoticeCard extends StatelessWidget {
                       softWrap: true,
                       maxLines: 2,
                     ),
+                    const SizedBox(height: 5),
                     Text(
                       date,
                       style: TextStyle(

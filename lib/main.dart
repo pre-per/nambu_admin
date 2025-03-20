@@ -5,7 +5,7 @@ import 'package:nambu_admin/firebase_options.dart';
 import 'package:nambu_admin/provider/calendar/calendaraddplanprovider.dart';
 import 'package:nambu_admin/provider/calendar/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
-import 'package:nambu_admin/provider/notice/noticewritingprovider.dart';
+import 'package:nambu_admin/provider/notice/noticeProvider.dart';
 import 'package:nambu_admin/provider/sport/randomnumprovider.dart';
 import 'package:nambu_admin/provider/sport/sportAddPersonProvider.dart';
 import 'package:nambu_admin/provider/sport/sportpersonprovider.dart';
@@ -28,7 +28,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => Navigationbarprovider()),
         ChangeNotifierProvider(create: (_) => Calendarprovider()),
-        ChangeNotifierProvider(create: (_) => NoticeProvider()),
+        ChangeNotifierProvider(create: (_) => NoticeProvider()..listenToNotice()..listenToCategory()),
         ChangeNotifierProvider(create: (_) => Calendaraddplanprovider()),
         ChangeNotifierProvider(create: (_) => SportpersonProvider()..listenToUser()..listenToScore()),
         ChangeNotifierProvider(create: (_) => RandomnumProvider()),

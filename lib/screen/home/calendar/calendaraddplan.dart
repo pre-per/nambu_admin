@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/component/categoryselectmodal.dart';
 import 'package:provider/provider.dart';
 import 'package:nambu_admin/provider/calendar/calendaraddplanprovider.dart';
 
@@ -22,17 +21,6 @@ class CalendarAddplan extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    int? selectedIndex = await showCategoryselectModal(
-                      provider.category.map((e) => e.iconData).toList(),
-                      provider.category.map((e) => e.title).toList(),
-                      provider.category.length,
-                      context,
-                    );
-
-                    if (selectedIndex != null) {
-                      print("선택된 카테고리: ${selectedIndex}");
-                      provider.selectCategory(selectedIndex);
-                    }
                   },
                   child: SizedBox(
                     child: Text('click'),

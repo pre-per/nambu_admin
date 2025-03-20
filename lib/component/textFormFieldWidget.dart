@@ -22,7 +22,7 @@ class TextFormFieldWidget extends StatelessWidget {
         Text(mainText,
             style: TextStyle(
                 fontSize: 20.0, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 20.0),
         TextFormField(
           controller: textEditingController,
           decoration: InputDecoration(

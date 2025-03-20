@@ -10,19 +10,13 @@ class SportpersonProvider with ChangeNotifier {
   int _redScore = 0;
 
   List<Sportpersonmodel> get teamList => _teamList;
-
   List<Sportpersonmodel> get blueTeam =>
       _teamList.where((item) => item.isBlueTeam).toList();
-
   List<Sportpersonmodel> get redTeam =>
       _teamList.where((item) => !(item.isBlueTeam)).toList();
-
   int get blueCheckedCount => blueTeam.where((item) => item.isChecked).length;
-
   int get redCheckedCount => redTeam.where((item) => item.isChecked).length;
-
   int get blueScore => _blueScore;
-
   int get redScore => _redScore;
 
   Future<void> toggleCheck(Sportpersonmodel person) async {

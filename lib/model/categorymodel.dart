@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CategoryModel {
@@ -5,7 +6,23 @@ class CategoryModel {
   IconData iconData;
 
   CategoryModel({
-    this.title = '',
-    IconData? iconData,
-  }) : iconData = iconData ?? Icons.notifications_active;
+    this.title = "Untitled",
+    this.iconData = Icons.notifications_active,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'iconData': iconData.codePoint,
+    };
+  }
+
+  factory CategoryModel.fromMap(Map<String, dynamic> map) {
+    return CategoryModel(
+      title: map['title'] ?? 'Untitled',
+      iconData: IconData(
+          map['iconData'] ?? Icons.notifications_active.codePoint,
+          fontFamily: 'MaterialIcons'),
+    );
+  }
 }
