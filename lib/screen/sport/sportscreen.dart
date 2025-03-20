@@ -12,8 +12,6 @@ class Sportscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double w_mdof = MediaQuery.of(context).size.width;
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -29,49 +27,31 @@ class Sportscreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20.0),
                   SportscreenSearchBar(context),
+                  // 검색창
                   const SizedBox(height: 30.0),
-                  IntrinsicHeight(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(' 청팀',
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w600)),
-                            TeamScore(context, true),
-                            const SizedBox(height: 10.0),
-                            SportscreenGetMore(context, w_mdof, true),
-                            const SizedBox(height: 10.0),
-                          ],
-                        ),
-                        VerticalDivider(color: Colors.grey[300], width: 0.5),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(' 홍팀',
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w600)),
-                            TeamScore(context, false),
-                            const SizedBox(height: 10.0),
-                            SportscreenGetMore(context, w_mdof, false),
-                            const SizedBox(height: 10.0),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  SportscreenTeamScore(),
+                  // 팀 스코어 표시
                   const SizedBox(height: 20.0),
                   Text('부가기능',
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.w600)),
+                  // Text '부가기능'
                   const SizedBox(height: 20.0),
-                  SportscreenRandomNum(context),
+                  SportscreenSubFeatureInkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => Randomnum()));
+                      },
+                      title: '랜덤 숫자뽑기',
+                      iconData: Icons.card_giftcard), // 랜덤 숫자 뽑기
                   const SizedBox(height: 10.0),
-                  SportscreenAddPerson(context),
+                  SportscreenSubFeatureInkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => SportAddPerson()));
+                      },
+                      title: '참여자 추가하기',
+                      iconData: Icons.add_reaction_outlined), // 참여자 추가하기
                 ],
               ),
             ],
@@ -80,6 +60,16 @@ class Sportscreen extends StatelessWidget {
       ),
     );
   }
+}
+
+AppBar SportscreenAppBar() {
+  return AppBar(
+    title: Text('봄 운동회',
+        style: TextStyle(
+          fontSize: 21.0,
+          fontWeight: FontWeight.w600,
+        )),
+  );
 }
 
 GestureDetector SportscreenSearchBar(BuildContext context) {
@@ -120,14 +110,72 @@ GestureDetector SportscreenSearchBar(BuildContext context) {
   );
 }
 
-AppBar SportscreenAppBar() {
-  return AppBar(
-    scrolledUnderElevation: 0,
-    title: Text('봄 운동회',
-        style: TextStyle(
-          fontSize: 21.0,
-          fontWeight: FontWeight.w600,
-        )),
+class SportscreenTeamScore extends StatelessWidget {
+  const SportscreenTeamScore({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicHeight(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(' 청팀',
+                  style:
+                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+              TeamScore(context, true),
+              const SizedBox(height: 10.0),
+              SportscreenGetMore(
+                  context, MediaQuery.of(context).size.width, true),
+              const SizedBox(height: 10.0),
+            ],
+          ),
+          VerticalDivider(color: Colors.grey[300], width: 0.5),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(' 홍팀',
+                  style:
+                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600)),
+              TeamScore(context, false),
+              const SizedBox(height: 10.0),
+              SportscreenGetMore(
+                  context, MediaQuery.of(context).size.width, false),
+              const SizedBox(height: 10.0),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+Row TeamScore(BuildContext context, bool isBlue) {
+  final provider = Provider.of<SportpersonProvider>(context);
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      IconButton(
+        onPressed: () {
+          provider.addScore(false, isBlue);
+        },
+        icon: Icon(Icons.remove),
+      ),
+      IntrinsicWidth(
+        child: Text(
+          '${(isBlue ? provider.blueScore : provider.redScore).toString().padLeft(3, ' ')}점',
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w600),
+        ),
+      ),
+      IconButton(
+        onPressed: () {
+          provider.addScore(true, isBlue);
+        },
+        icon: Icon(Icons.add),
+      ),
+    ],
   );
 }
 
@@ -160,95 +208,45 @@ GestureDetector SportscreenGetMore(
   );
 }
 
-GestureDetector SportscreenRandomNum(BuildContext context) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => Randomnum()));
-    },
-    child: Container(
-      width: MediaQuery.of(context).size.width,
-      height: 70.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: Color(0xFFFFECB3),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(Icons.card_giftcard),
-            const SizedBox(width: 20.0),
-            Expanded(
-                child: Text(
-              '랜덤 숫자뽑기',
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
-            )),
-            Icon(Icons.navigate_next, color: Colors.grey[600]),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+class SportscreenSubFeatureInkWell extends StatelessWidget {
+  final VoidCallback onTap;
+  final String title;
+  final IconData iconData;
 
-GestureDetector SportscreenAddPerson(BuildContext context) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => SportAddPerson()));
-    },
-    child: Container(
-      width: MediaQuery.of(context).size.width,
-      height: 70.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: Color(0xFFFFECB3),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(Icons.add_reaction_outlined),
-            const SizedBox(width: 20.0),
-            Expanded(
-                child: Text(
-                  '참여자 추가하기',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
-                )),
-            Icon(Icons.navigate_next, color: Colors.grey[600]),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+  const SportscreenSubFeatureInkWell(
+      {required this.onTap,
+      required this.title,
+      required this.iconData,
+      super.key});
 
-Row TeamScore(BuildContext context, bool isBlue) {
-  final provider = Provider.of<SportpersonProvider>(context);
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      IconButton(
-        onPressed: () {
-          provider.addScore(false, isBlue);
-        },
-        icon: Icon(Icons.remove),
-      ),
-      IntrinsicWidth(
-        child: Text(
-          '${(isBlue ? provider.blueScore : provider.redScore).toString().padLeft(3,' ')}점',
-          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w600),
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 70.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: MAIN_YELLOW_COLOR,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(iconData),
+              const SizedBox(width: 20.0),
+              Expanded(
+                  child: Text(
+                title,
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+              )),
+              Icon(Icons.navigate_next, color: Colors.grey[600]),
+            ],
+          ),
         ),
       ),
-      IconButton(
-        onPressed: () {
-          provider.addScore(true, isBlue);
-        },
-        icon: Icon(Icons.add),
-      ),
-    ],
-  );
+    );
+  }
 }
