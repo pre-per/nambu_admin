@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nambu_admin/component/noticecard.dart';
 import 'package:nambu_admin/screen/home/notice/noticewriting.dart';
+import 'package:nambu_admin/component/noticeCard.dart';
 
 class Noticescreen extends StatelessWidget {
   const Noticescreen({super.key});
@@ -11,13 +11,16 @@ class Noticescreen extends StatelessWidget {
       appBar: NoticescreenAppBar(context),
       body: ListView(
         children: [
-          Column(
-            children: [
-              Noticecard(),
-              Noticecard(),
-              Noticecard(),
-              Noticecard(),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                NoticeCard(title: 'test1', date: '2025-03-20'),
+                NoticeCard(title: 'test2', date: '2025-03-20'),
+                NoticeCard(title: 'test3', date: '2025-03-20'),
+                NoticeCard(title: 'test4', date: '2025-03-20'),
+              ],
+            ),
           ),
         ],
       ),
@@ -32,9 +35,9 @@ AppBar NoticescreenAppBar(BuildContext context) {
     title: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(' 📌 중요! 공지사항을 확인하세요',
+        Text('공지사항',
             style: TextStyle(
-                fontSize: 17.0,
+                fontSize: 20.0,
                 fontWeight: FontWeight.w600,
                 color: Colors.black)),
         GestureDetector(

@@ -13,8 +13,7 @@ class Teamview extends StatelessWidget {
     final provider = Provider.of<SportpersonProvider>(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(scrolledUnderElevation: 0),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
