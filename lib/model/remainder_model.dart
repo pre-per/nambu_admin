@@ -42,7 +42,7 @@ class RemainderModel {
       bodyLotionNum: map['bodyLotionNum'] ?? 0,
       skinLotionNum: map['skinLotionNum'] ?? 0,
       showerTowelNum: map['showerTowelNum'] ?? 0,
-      towelNum: map['totalNum'] ?? 0,
+      towelNum: map['towelNum'] ?? 0,
       tissueNum: map['tissueNum'] ?? 0,
     );
   }

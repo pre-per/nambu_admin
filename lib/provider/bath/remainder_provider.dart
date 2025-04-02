@@ -41,11 +41,35 @@ class RemainderProvider with ChangeNotifier {
           .doc(category)
           .set(updated.toMap());
       _remainders[category] = updated;
+      updateTotal();
       notifyListeners();
     } catch (e) {
       print("Error updating $category remainder: $e");
     }
   }
+
+  // 전체 수 업데이트
+  void updateTotal() {
+    final men = _remainders['men'];
+    final women = _remainders['women'];
+    final office = _remainders['office'];
+
+    if (men == null || women == null || office == null) return;
+
+    final total = RemainderModel(
+      toothpasteNum: men.toothpasteNum + women.toothpasteNum + office.toothpasteNum,
+      shampooNum: men.shampooNum + women.shampooNum + office.shampooNum,
+      soapNum: men.soapNum + women.soapNum + office.soapNum,
+      bodyLotionNum: men.bodyLotionNum + women.bodyLotionNum + office.bodyLotionNum,
+      skinLotionNum: men.skinLotionNum + women.skinLotionNum + office.skinLotionNum,
+      showerTowelNum: men.showerTowelNum + women.showerTowelNum + office.showerTowelNum,
+      towelNum: men.towelNum + women.towelNum + office.towelNum,
+      tissueNum: men.tissueNum + women.tissueNum + office.tissueNum,
+    );
+
+    updateRemainder('total', total);
+  }
+
 
   /// 개별 수량 업데이트 함수들 (총 7개 항목)
   void updateToothpasteNum(String category, int newValue) {
