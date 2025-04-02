@@ -173,7 +173,7 @@ class Icon_Name_Num_Row extends StatelessWidget {
 
     void decrement10() {
       if (updateFuncMap[text] != null && num > 0) {
-        updateFuncMap[text]!(category, num - 1);
+        updateFuncMap[text]!(category, num - 10);
       }
     }
 
