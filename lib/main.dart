@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nambu_admin/firebase_options.dart';
+import 'package:nambu_admin/provider/bath/remainder_provider.dart';
 import 'package:nambu_admin/provider/calendar/calendaraddplanprovider.dart';
 import 'package:nambu_admin/provider/calendar/calendarprovider.dart';
 import 'package:nambu_admin/provider/navigationbarprovider.dart';
@@ -17,7 +18,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:nambu_admin/screen/home/homescreen.dart';
 import 'package:nambu_admin/screen/profile/profilescreen.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -28,11 +28,19 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => Navigationbarprovider()),
         ChangeNotifierProvider(create: (_) => Calendarprovider()),
-        ChangeNotifierProvider(create: (_) => NoticeProvider()..listenToNotice()..listenToCategory()),
+        ChangeNotifierProvider(
+            create: (_) => NoticeProvider()
+              ..listenToNotice()
+              ..listenToCategory()),
         ChangeNotifierProvider(create: (_) => Calendaraddplanprovider()),
-        ChangeNotifierProvider(create: (_) => SportpersonProvider()..listenToUser()..listenToScore()),
+        ChangeNotifierProvider(
+            create: (_) => SportpersonProvider()
+              ..listenToUser()
+              ..listenToScore()),
         ChangeNotifierProvider(create: (_) => RandomnumProvider()),
         ChangeNotifierProvider(create: (_) => SportAddPersonProvider()),
+        ChangeNotifierProvider(
+            create: (_) => RemainderProvider()..fetchAllRemainders()),
       ],
       child: MyApp(),
     ),

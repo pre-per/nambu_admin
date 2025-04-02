@@ -70,6 +70,9 @@ flutter:
     - asset/image/logo.png
     - asset/animation/congratulations.json
     - asset/image/check.png
+    - asset/image/icon/tooth.png
+    - asset/image/icon/soap.png
+    - asset/image/icon/shampoo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
