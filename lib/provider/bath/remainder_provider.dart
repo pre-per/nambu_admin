@@ -96,4 +96,11 @@ class RemainderProvider with ChangeNotifier {
     current.towelNum = newValue;
     updateRemainder(category, current);
   }
+
+  void updateTissueNum(String category, int newValue) {
+    final current = _remainders[category];
+    if (current == null) return;
+    current.tissueNum = newValue;
+    updateRemainder(category, current);
+  }
 }

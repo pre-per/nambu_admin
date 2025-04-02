@@ -8,6 +8,7 @@ class RemainderModel {
   int skinLotionNum;
   int showerTowelNum;
   int towelNum;
+  int tissueNum;
 
   RemainderModel({
     this.toothpasteNum = 0,
@@ -17,6 +18,7 @@ class RemainderModel {
     this.skinLotionNum = 0,
     this.showerTowelNum = 0,
     this.towelNum = 0,
+    this.tissueNum = 0,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,6 +30,7 @@ class RemainderModel {
       'skinLotionNum': skinLotionNum,
       'showerTowelNum': showerTowelNum,
       'towelNum': towelNum,
+      'tissueNum': tissueNum,
     };
   }
   factory RemainderModel.fromMap(DocumentSnapshot doc) {
@@ -40,6 +43,7 @@ class RemainderModel {
       skinLotionNum: map['skinLotionNum'] ?? 0,
       showerTowelNum: map['showerTowelNum'] ?? 0,
       towelNum: map['totalNum'] ?? 0,
+      tissueNum: map['tissueNum'] ?? 0,
     );
   }
 }

@@ -77,6 +77,7 @@ flutter:
     - asset/image/icon/showerTowel.png
     - asset/image/icon/skinLotion.png
     - asset/image/icon/towel.png
+    - asset/image/icon/tissue.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

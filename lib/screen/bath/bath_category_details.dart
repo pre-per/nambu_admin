@@ -77,7 +77,7 @@ class BathCategoryDetails extends StatelessWidget {
                 const SizedBox(height: 18.0),
                 Icon_Name_Num_Row(
                   imageString: 'asset/image/icon/shampoo.png',
-                  text: '샴푸',
+                  text: '바디솝(샴푸)',
                   num: provider.remainders[category]?.shampooNum ?? -1,
                   category: category,
                 ),
@@ -116,6 +116,13 @@ class BathCategoryDetails extends StatelessWidget {
                   num: provider.remainders[category]?.towelNum ?? -1,
                   category: category,
                 ),
+                const SizedBox(height: 18.0),
+                Icon_Name_Num_Row(
+                  imageString: 'asset/image/icon/tissue.png',
+                  text: '휴지',
+                  num: provider.remainders[category]?.tissueNum ?? -1,
+                  category: category,
+                ),
               ],
             ),
           ],
@@ -145,12 +152,13 @@ class Icon_Name_Num_Row extends StatelessWidget {
 
     final updateFuncMap = {
       '치약': provider.updateToothpasteNum,
-      '샴푸': provider.updateShampooNum,
+      '바디솝(샴푸)': provider.updateShampooNum,
       '비누': provider.updateSoapNum,
       '바디로션': provider.updateBodyLotionNum,
       '스킨로션': provider.updateSkinLotionNum,
       '때타월': provider.updateShowerTowelNum,
       '수건': provider.updateTowelNum,
+      '휴지': provider.updateTissueNum,
     };
 
     void increment() {
