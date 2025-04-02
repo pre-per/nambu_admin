@@ -19,7 +19,10 @@ class RemainderProvider with ChangeNotifier {
     try {
       final categories = ['men', 'women', 'office', 'total'];
       for (String category in categories) {
-        DocumentSnapshot doc = await firestore.collection('bathRemainder').doc(category).get();
+        DocumentSnapshot doc = await firestore
+            .collection('bathRemainder')
+            .doc(category)
+            .get();
         if (doc.exists) {
           _remainders[category] = RemainderModel.fromMap(doc);
         }
@@ -33,7 +36,10 @@ class RemainderProvider with ChangeNotifier {
   /// 특정 카테고리의 데이터 업데이트
   Future<void> updateRemainder(String category, RemainderModel updated) async {
     try {
-      await firestore.collection('bathRemainder').doc(category).set(updated.toMap());
+      await firestore
+          .collection('bathRemainder')
+          .doc(category)
+          .set(updated.toMap());
       _remainders[category] = updated;
       notifyListeners();
     } catch (e) {
@@ -41,11 +47,10 @@ class RemainderProvider with ChangeNotifier {
     }
   }
 
-  /// 개별 수량 업데이트 예시
+  /// 개별 수량 업데이트 함수들 (총 7개 항목)
   void updateToothpasteNum(String category, int newValue) {
     final current = _remainders[category];
     if (current == null) return;
-
     current.toothpasteNum = newValue;
     updateRemainder(category, current);
   }
@@ -53,7 +58,6 @@ class RemainderProvider with ChangeNotifier {
   void updateShampooNum(String category, int newValue) {
     final current = _remainders[category];
     if (current == null) return;
-
     current.shampooNum = newValue;
     updateRemainder(category, current);
   }
@@ -61,8 +65,35 @@ class RemainderProvider with ChangeNotifier {
   void updateSoapNum(String category, int newValue) {
     final current = _remainders[category];
     if (current == null) return;
-
     current.soapNum = newValue;
+    updateRemainder(category, current);
+  }
+
+  void updateBodyLotionNum(String category, int newValue) {
+    final current = _remainders[category];
+    if (current == null) return;
+    current.bodyLotionNum = newValue;
+    updateRemainder(category, current);
+  }
+
+  void updateSkinLotionNum(String category, int newValue) {
+    final current = _remainders[category];
+    if (current == null) return;
+    current.skinLotionNum = newValue;
+    updateRemainder(category, current);
+  }
+
+  void updateShowerTowelNum(String category, int newValue) {
+    final current = _remainders[category];
+    if (current == null) return;
+    current.showerTowelNum = newValue;
+    updateRemainder(category, current);
+  }
+
+  void updateTowelNum(String category, int newValue) {
+    final current = _remainders[category];
+    if (current == null) return;
+    current.towelNum = newValue;
     updateRemainder(category, current);
   }
 }
