@@ -199,8 +199,8 @@ GestureDetector SportscreenGetMore(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('인원 확인하기',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600)),
-            Icon(Icons.navigate_next, size: 25.0, color: Colors.grey),
+                style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.w600)),
+            Icon(Icons.navigate_next, size: 20.0, color: Colors.grey),
           ],
         ),
       ),

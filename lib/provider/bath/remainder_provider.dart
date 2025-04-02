@@ -17,7 +17,7 @@ class RemainderProvider with ChangeNotifier {
   /// 모든 문서 불러오기
   Future<void> fetchAllRemainders() async {
     try {
-      final categories = ['men', 'women', 'office', 'total'];
+      final categories = ['men', 'women', 'office'];
       for (String category in categories) {
         DocumentSnapshot doc = await firestore
             .collection('bathRemainder')
@@ -27,6 +27,7 @@ class RemainderProvider with ChangeNotifier {
           _remainders[category] = RemainderModel.fromMap(doc);
         }
       }
+      updateTotal();
       notifyListeners();
     } catch (e) {
       print("Error fetching remainders: $e");
