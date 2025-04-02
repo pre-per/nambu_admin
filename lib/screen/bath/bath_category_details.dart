@@ -171,12 +171,21 @@ class Icon_Name_Num_Row extends StatelessWidget {
       }
     }
 
+    void decrement10() {
+      if (updateFuncMap[text] != null && num > 0) {
+        updateFuncMap[text]!(category, num - 1);
+      }
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
           onTap: () {
             increment10();
+          },
+          onLongPress: () {
+            decrement10();
           },
           child: Container(
             height: 35.0,
